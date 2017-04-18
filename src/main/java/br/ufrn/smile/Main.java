@@ -19,5 +19,7 @@ public class Main {
 		parser.actorDeclaration().enterRule(actorListener);
 		
 		System.out.println(actorListener.getParsedActor().getName());
+		
+		System.out.println(actorListener.getParsedActor().getActorType());
 	}
 }

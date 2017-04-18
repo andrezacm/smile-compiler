@@ -9,7 +9,8 @@ public class ActorListener extends SmileBaseListener {
 	@Override
 	public void enterActorDeclaration(SmileParser.ActorDeclarationContext context) {
 		String actorName = context.actorName().getText();
-		parsedActor = new Actor(actorName);
+		String actorType = context.actorType().getText();
+		parsedActor = new Actor(actorName, actorType);
 	}
 	
 	public Actor getParsedActor() {
