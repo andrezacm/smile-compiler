@@ -1,1 +1,4 @@
 actor ActorOne
+	covers role ActorTwo
+	plays agent ActorThree
+	isPartOf position ActorFour

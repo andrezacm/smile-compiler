@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import org.antlr.v4.runtime.*;
 
-import br.ufrn.smile.listeners.ActorListener;
+import br.ufrn.smile.listeners.ActorStatementListener;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -14,12 +14,14 @@ public class Main {
 		
 		SmileParser parser = new SmileParser(new CommonTokenStream(lexer));
 		
-		ActorListener actorListener = new ActorListener();
+		ActorStatementListener actorStatementListener = new ActorStatementListener();
 		
-		parser.actorDeclaration().enterRule(actorListener);
+		parser.actorStatement().enterRule(actorStatementListener);
 		
-		System.out.println(actorListener.getParsedActor().getName());
+		System.out.println(actorStatementListener.getMainActor().getName());
 		
-		System.out.println(actorListener.getParsedActor().getActorType());
+		System.out.println(actorStatementListener.getMainActor().getActorType());
+		
+		System.out.println(actorStatementListener.getMainActor().getActorAssociatons().toString());
 	}
 }
