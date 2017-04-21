@@ -1,4 +1,4 @@
 actor ActorOne
-	covers role ActorTwo
-	plays agent ActorThree
-	isPartOf position ActorFour
+	covers ( role ActorTwo, agent ActorThree )
+	isPartOf ( position ActorFour )
+	plays ( actor ActorFive )

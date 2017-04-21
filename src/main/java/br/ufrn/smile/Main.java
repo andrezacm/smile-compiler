@@ -22,6 +22,11 @@ public class Main {
 		
 		System.out.println(actorStatementListener.getMainActor().getActorType());
 		
-		System.out.println(actorStatementListener.getMainActor().getActorAssociatons().toString());
+		actorStatementListener.getMainActor().getActorAssociatons().forEach(association -> {
+			System.out.println(association.getType().toString());
+			association.getActors().forEach(actor -> {
+				System.out.println(actor.getActorType() + " " + actor.getName());
+			});
+		});
 	}
 }

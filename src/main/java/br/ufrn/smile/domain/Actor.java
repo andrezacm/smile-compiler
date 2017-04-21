@@ -1,17 +1,17 @@
 package br.ufrn.smile.domain;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Actor {
 	private String name;
 	private ActorType actorType;
-	private Map<AssociationType, Actor> actorAssociatons;
+	private List<Association> actorAssociatons;
 	
 	public Actor(String name, String actorType) {
 		this.name = name;
 		this.actorType = ActorType.valueOf(actorType.toUpperCase());
-		this.actorAssociatons = new HashMap<AssociationType, Actor>();
+		this.actorAssociatons = new ArrayList<Association>();
 	}
 	
 	public String getName() {
@@ -22,11 +22,11 @@ public class Actor {
 		return actorType.getDescription();
 	}
 	
-	public Map<AssociationType, Actor> getActorAssociatons() {
+	public List<Association> getActorAssociatons() {
 		return actorAssociatons;
 	}
 	
-	public void setActorAssociations(Map<AssociationType, Actor> actorAssociatons) {
+	public void setActorAssociations(List<Association> actorAssociatons) {
 		this.actorAssociatons = actorAssociatons;
 	}
 

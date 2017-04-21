@@ -4,11 +4,11 @@ actorStatement : actorDeclaration NL
 				 (actorAssociationDeclaration)*
 				 EOF;
 
-actorDeclaration : actorType actorName ;
+actorDeclaration : actorType actorName (',')? ;
 actorType : ACTOR | AGENT | POSITION | ROLE ;
 actorName : ID ;
 
-actorAssociationDeclaration : associationType actorDeclaration NL?;
+actorAssociationDeclaration : associationType '(' (actorDeclaration)+ ')' NL?;
 associationType : COVERS | ISA | INSTANCEOF | ISPARTOF | OCCUPIES | PLAYS ;
 
 // Actor types

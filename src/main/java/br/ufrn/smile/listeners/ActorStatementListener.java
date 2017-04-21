@@ -1,10 +1,10 @@
 package br.ufrn.smile.listeners;
 
-import java.util.Map;
+import java.util.List;
 
 import br.ufrn.smile.*;
 import br.ufrn.smile.domain.Actor;
-import br.ufrn.smile.domain.AssociationType;
+import br.ufrn.smile.domain.Association;
 
 public class ActorStatementListener extends SmileBaseListener {
 	private Actor mainActor;
@@ -18,7 +18,7 @@ public class ActorStatementListener extends SmileBaseListener {
 		
 		ActorAssociationListener actorAssociationListener = new ActorAssociationListener();
 		context.actorAssociationDeclaration().forEach(association -> association.enterRule(actorAssociationListener));
-		Map<AssociationType, Actor> actorAssociatons = actorAssociationListener.getActorAssociatons();
+		List<Association> actorAssociatons = actorAssociationListener.getActorAssociatons();
 		
 		mainActor.setActorAssociations(actorAssociatons);
 	}

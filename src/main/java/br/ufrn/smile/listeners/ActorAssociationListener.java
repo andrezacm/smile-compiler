@@ -1,32 +1,45 @@
 package br.ufrn.smile.listeners;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import br.ufrn.smile.*;
 import br.ufrn.smile.domain.Actor;
-import br.ufrn.smile.domain.AssociationType;
+import br.ufrn.smile.domain.Association;
+import br.ufrn.smile.domain.Association.AssociationType;
 
 public class ActorAssociationListener extends SmileBaseListener {
-	private Map<AssociationType, Actor> actorAssociatons;
+	private List<Association> actorAssociatons;
 	
 	public ActorAssociationListener() {
-		actorAssociatons = new HashMap<AssociationType, Actor>();
+		actorAssociatons = new ArrayList<Association>();
 	}
 	
 	@Override 
 	public void enterActorAssociationDeclaration(SmileParser.ActorAssociationDeclarationContext context) {
-		String association = context.associationType().getText();
-		AssociationType associationType = AssociationType.valueOf(association.toUpperCase());
+		String associationType = context.associationType().getText();
+		Association association = new Association(associationType);
 		
-		ActorListener actorListener = new ActorListener();
-		context.actorDeclaration().enterRule(actorListener);
-		Actor actor = actorListener.getParsedActor();
+		List<ActorListener> actorListeners = new ArrayList<ActorListener>();
 		
-		actorAssociatons.put(associationType, actor);
+		context.actorDeclaration().forEach(actor -> {
+			ActorListener actorListener = new ActorListener();
+			actor.enterRule(actorListener);
+			actorListeners.add(actorListener);
+		});
+		
+		List<Actor> actors = new ArrayList<Actor>();
+		
+		actorListeners.forEach(listener -> actors.add(listener.getParsedActor()));
+		
+		association.setActors(actors);
+		
+		actorAssociatons.add(association);
 	}
 	
-	public Map<AssociationType, Actor> getActorAssociatons() {
+	public List<Association> getActorAssociatons() {
 		return actorAssociatons;
 	}
 }
