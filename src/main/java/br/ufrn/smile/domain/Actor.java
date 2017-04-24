@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Actor {
 	private String name;
-	private ActorType actorType;
+	private ActorType type;
 	private List<Association> actorAssociatons;
 	
-	public Actor(String name, String actorType) {
+	public Actor(String name, String type) {
 		this.name = name;
-		this.actorType = ActorType.valueOf(actorType.toUpperCase());
+		this.type = ActorType.valueOf(type.toUpperCase());
 		this.actorAssociatons = new ArrayList<Association>();
 	}
 	
@@ -18,8 +18,8 @@ public class Actor {
 		return name;
 	}
 	
-	public String getActorType() {
-		return actorType.getDescription();
+	public String getType() {
+		return type.getDescription();
 	}
 	
 	public List<Association> getActorAssociatons() {
