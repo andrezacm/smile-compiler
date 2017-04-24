@@ -18,8 +18,8 @@ public class Actor {
 		return name;
 	}
 	
-	public String getType() {
-		return type.getDescription();
+	public ActorType getType() {
+		return type;
 	}
 	
 	public List<Association> getActorAssociatons() {

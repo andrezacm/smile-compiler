@@ -27,6 +27,10 @@ public class Association {
 	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
+
+	public Boolean isValid(Actor mainActor) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+		return AssociationFactory.getValidator(type).isValid(mainActor, this);
+	}
 	
 	public enum AssociationType {
 		COVERS("covers"),
