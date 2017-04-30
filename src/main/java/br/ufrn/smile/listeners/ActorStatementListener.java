@@ -21,6 +21,11 @@ public class ActorStatementListener extends SmileBaseListener {
 		List<Association> actorAssociatons = actorAssociationListener.getActorAssociatons();
 		
 		mainActor.setActorAssociations(actorAssociatons);
+		
+		ExternalRelationshipsListener externalReListener = new ExternalRelationshipsListener();
+		context.externalRelationships().enterRule(externalReListener);
+		
+		mainActor.setExternalRelationships(externalReListener.getExternalRelationships());
 	}
 	
 	public Actor getMainActor() {

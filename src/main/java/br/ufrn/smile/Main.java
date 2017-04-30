@@ -22,25 +22,42 @@ public class Main {
 
 		Actor mainActor = actorStatementListener.getMainActor();
 
-		System.out.println(actorStatementListener.getMainActor().getName());
+		System.out.println("MAIN ACTOR: " + 
+		                    mainActor.getName() + 
+		                    mainActor.getType().getDescription() +
+		                    "\n-----------------------------------------------\n" +
+		                    "ASSOCIATIONS");
 		
-		System.out.println(actorStatementListener.getMainActor().getType());
-		
-		actorStatementListener.getMainActor().getActorAssociatons().forEach(association -> {
-			System.out.println(association.getType().toString());
+		mainActor.getActorAssociatons().forEach(association -> {
+			System.out.print(association.getType().getDescription() + " ( ");
+			
 			association.getActors().forEach(actor -> {
-				System.out.println(actor.getType() + " " + actor.getName());
+				System.out.print(actor.getType().getDescription() + " " + actor.getName() + " ");
 			});
 
+			System.out.print(" )");
+			
 			try {
 				if (association.isValid(mainActor)) {
-					System.out.println("valid association");
+					System.out.println(" > valid association");
 				} else {
-					System.out.println("invalid association");
+					System.out.println(" > invalid association");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
+		
+		System.out.println("-----------------------------------------------\n" + 
+						   "EXTERNAL RELATIONSHIPS");
+		
+		mainActor.getExternalRelationships().getDependers().forEach(depender -> {
+			System.out.println("dependsOn (" + 
+								depender.getActor().getName() + ") " +
+								depender.getActor().getType().getDescription() + " for (" +
+								depender.getType().getDescription() + " " +
+								depender.getName() + ")");
+		});
+		
 	}
 }

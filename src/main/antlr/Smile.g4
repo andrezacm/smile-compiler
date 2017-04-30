@@ -1,8 +1,10 @@
 grammar Smile;
 
 actorStatement : actorDeclaration NL
-				 (actorAssociationDeclaration)*
-				 EOF;
+                 (actorAssociationDeclaration)*
+                 NL
+                 externalRelationships
+                 EOF;
 
 actorDeclaration : actorType actorName (',')? ;
 actorType : ACTOR | AGENT | POSITION | ROLE ;
@@ -10,6 +12,11 @@ actorName : ID ;
 
 actorAssociationDeclaration : associationType '(' (actorDeclaration)+ ')' NL? ;
 associationType : COVERS | ISA | INSTANCEOF | ISPARTOF | OCCUPIES | PLAYS ;
+
+externalRelationships : 'ExternalRelationships' NL
+					    (dependerPerspective)* ;
+
+dependerPerspective : 'dependsOn' dependencyDeclaration NL? ;
 
 dependencyDeclaration : '(' actorDeclaration ')' 'for' '(' dependencyType dependencyName ')' ;
 dependencyType : GOAL | RESOURCE | SOFTGOAL | TASK ;

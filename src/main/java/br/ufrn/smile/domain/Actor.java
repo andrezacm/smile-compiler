@@ -7,6 +7,7 @@ public class Actor {
 	private String name;
 	private ActorType type;
 	private List<Association> actorAssociatons;
+	private ExternalRelationships externalRelationships;
 	
 	public Actor(String name, String type) {
 		this.name = name;
@@ -28,6 +29,14 @@ public class Actor {
 	
 	public void setActorAssociations(List<Association> actorAssociatons) {
 		this.actorAssociatons = actorAssociatons;
+	}
+
+	public ExternalRelationships getExternalRelationships() {
+		return externalRelationships;
+	}
+
+	public void setExternalRelationships(ExternalRelationships externalRelationships) {
+		this.externalRelationships = externalRelationships;
 	}
 
 	public enum ActorType {
