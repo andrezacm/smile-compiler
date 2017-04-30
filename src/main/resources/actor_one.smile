@@ -2,3 +2,7 @@ actor ActorOne
 	covers ( role ActorTwo, agent ActorThree )
 	isPartOf ( actor ActorFour )
 	isA ( actor ActorFive, position ActorSix )
+
+ExternalRelationships
+	dependsOn ( role ActorTwo ) for ( goal SomeGoal )
+	dependsOn ( actor ActorFour ) for ( task SomeTask )
