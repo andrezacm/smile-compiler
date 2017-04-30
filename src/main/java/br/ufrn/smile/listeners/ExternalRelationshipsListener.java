@@ -17,18 +17,31 @@ public class ExternalRelationshipsListener extends SmileBaseListener {
 
 	@Override 
 	public void enterExternalRelationships(SmileParser.ExternalRelationshipsContext context) {
-		List<DependencyListener> dependencyListeners = new ArrayList<DependencyListener>();
-		List<Dependency> dependencies = new ArrayList<Dependency>();
+		List<DependencyListener> dependerListeners = new ArrayList<DependencyListener>();
+		List<Dependency> dependers = new ArrayList<Dependency>();
 		
 		context.dependerPerspective().forEach(depender -> {
 			DependencyListener dependencyListener = new DependencyListener();
-			depender.dependencyDeclaration().enterRule(dependencyListener);
-			dependencyListeners.add(dependencyListener);
+			depender.enterRule(dependencyListener);
+			dependerListeners.add(dependencyListener);
 		});
 		
-		dependencyListeners.forEach(listener -> dependencies.add(listener.getDependency()));
+		dependerListeners.forEach(listener -> dependers.add(listener.getDependency()));
 		
-		externalRelationships.setDependers(dependencies);
+		externalRelationships.setDependers(dependers);
+		
+		List<DependencyListener> dependeeListeners = new ArrayList<DependencyListener>();
+		List<Dependency> dependees = new ArrayList<Dependency>();
+		
+		context.dependeePerspective().forEach(dependee -> {
+			DependencyListener dependencyListener = new DependencyListener();
+			dependee.enterRule(dependencyListener);
+			dependeeListeners.add(dependencyListener);
+		});
+		
+		dependeeListeners.forEach(listener -> dependees.add(listener.getDependency()));
+		
+		externalRelationships.setDependees(dependees);
 	}
 	
 	public ExternalRelationships getExternalRelationships() {

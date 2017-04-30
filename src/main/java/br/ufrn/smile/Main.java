@@ -52,11 +52,19 @@ public class Main {
 						   "EXTERNAL RELATIONSHIPS");
 		
 		mainActor.getExternalRelationships().getDependers().forEach(depender -> {
-			System.out.println("dependsOn (" + 
+			System.out.println( depender.getPerspective().getDescription() + " (" + 
 								depender.getActor().getName() + ") " +
 								depender.getActor().getType().getDescription() + " for (" +
 								depender.getType().getDescription() + " " +
 								depender.getName() + ")");
+		});
+		
+		mainActor.getExternalRelationships().getDependees().forEach(dependee -> {
+			System.out.println( dependee.getPerspective().getDescription() + " (" + 
+								dependee.getActor().getName() + ") " +
+								dependee.getActor().getType().getDescription() + " for (" +
+								dependee.getType().getDescription() + " " +
+								dependee.getName() + ")");
 		});
 		
 	}

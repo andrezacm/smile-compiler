@@ -6,3 +6,5 @@ actor ActorOne
 ExternalRelationships
 	dependsOn ( role ActorTwo ) for ( goal SomeGoal )
 	dependsOn ( actor ActorFour ) for ( task SomeTask )
+	reaches ( goal SomeGoal ) to ( role ActorFour )
+	carriesOut ( task SomeTask ) to ( actor ActorFive )

@@ -4,11 +4,13 @@ public class Dependency {
 	private Actor actor;
 	private String name;
 	private DependencyType type;
+	private DependencyPerspective perspective;
 	
-	public Dependency(Actor actor, String name, String type) {
+	public Dependency(Actor actor, String name, String type, String perspective) {
 		this.actor = actor;
 		this.name = name;
-		this.setType(DependencyType.valueOf(type.toUpperCase()));
+		this.type = DependencyType.valueOf(type.toUpperCase());
+		this.perspective = DependencyPerspective.valueOf(perspective.toUpperCase());
 	}
 
 	public Actor getActor() {
@@ -35,6 +37,14 @@ public class Dependency {
 		this.type = type;
 	}
 
+	public DependencyPerspective getPerspective() {
+		return perspective;
+	}
+
+	public void setPerspective(DependencyPerspective perspective) {
+		this.perspective = perspective;
+	}
+
 	public enum DependencyType {
 		GOAL("goal"),
 		RESOURCE("resource"),
@@ -44,6 +54,23 @@ public class Dependency {
 		private final String description;
 		
 		DependencyType(String description) {
+			this.description = description;
+		}
+		
+		public String getDescription() {
+			return description;
+		}
+	}
+	
+	public enum DependencyPerspective {
+		CARRIESOUT("carriesOut"),
+		DEPENDSON("dependsOn"),
+		PROVIDES("provides"),
+		REACHES("reaches");
+		
+		private final String description;
+		
+		DependencyPerspective(String description) {
 			this.description = description;
 		}
 		

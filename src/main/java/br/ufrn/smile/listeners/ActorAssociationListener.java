@@ -1,14 +1,11 @@
 package br.ufrn.smile.listeners;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import br.ufrn.smile.*;
 import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.Association;
-import br.ufrn.smile.domain.Association.AssociationType;
 
 public class ActorAssociationListener extends SmileBaseListener {
 	private List<Association> actorAssociatons;
