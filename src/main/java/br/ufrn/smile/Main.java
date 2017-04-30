@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.*;
 import com.thoughtworks.xstream.XStream;
 
 import br.ufrn.smile.listeners.ActorStatementListener;
+import br.ufrn.smile.listeners.ErrorListener;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -17,6 +18,9 @@ public class Main {
 		SmileLexer lexer = new SmileLexer(new ANTLRInputStream(input));
 		
 		SmileParser parser = new SmileParser(new CommonTokenStream(lexer));
+		
+		parser.removeErrorListeners();
+		parser.addErrorListener(new ErrorListener());
 		
 		ActorStatementListener actorStatementListener = new ActorStatementListener();
 		
