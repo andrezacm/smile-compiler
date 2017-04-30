@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import br.ufrn.smile.domain.Actor;
+import br.ufrn.smile.domain.ErrorHandler;
+
 import org.antlr.v4.runtime.*;
 
 import com.thoughtworks.xstream.XStream;
@@ -77,5 +79,9 @@ public class Main {
 		String xml = xstream.toXML(mainActor);
 		System.out.println("-----------------------------------------------\n" + 
 						   "TO XML\n" + xml);
+		
+		String errors = xstream.toXML(ErrorHandler.getErrorHandler().getErrors());
+		System.out.println("-----------------------------------------------\n" + 
+				   "ERRORS\n" + errors);
 	}
 }
