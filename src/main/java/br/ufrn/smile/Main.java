@@ -6,6 +6,8 @@ import java.io.InputStream;
 import br.ufrn.smile.domain.Actor;
 import org.antlr.v4.runtime.*;
 
+import com.thoughtworks.xstream.XStream;
+
 import br.ufrn.smile.listeners.ActorStatementListener;
 
 public class Main {
@@ -67,5 +69,9 @@ public class Main {
 								dependee.getName() + ")");
 		});
 		
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(mainActor);
+		System.out.println("-----------------------------------------------\n" + 
+						   "TO XML\n" + xml);
 	}
 }
