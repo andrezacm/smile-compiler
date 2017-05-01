@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import br.ufrn.smile.domain.Actor;
+import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.ErrorHandler;
 
 import org.antlr.v4.runtime.*;
@@ -17,71 +18,16 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		InputStream input = Main.class.getResourceAsStream("/actor_one.smile");
 		
-		SmileLexer lexer = new SmileLexer(new ANTLRInputStream(input));
+		ActorStatementFactory actorStatement = new ActorStatementFactory();
+		actorStatement.build(input);
+		actorStatement.verifyAssociationErrors();
+		actorStatement.print();
 		
-		SmileParser parser = new SmileParser(new CommonTokenStream(lexer));
+		InputStream input2 = Main.class.getResourceAsStream("/actor_two.smile");
 		
-		parser.removeErrorListeners();
-		parser.addErrorListener(new ErrorListener());
-		
-		ActorStatementListener actorStatementListener = new ActorStatementListener();
-		
-		parser.actorStatement().enterRule(actorStatementListener);
-
-		Actor mainActor = actorStatementListener.getMainActor();
-
-		System.out.println("MAIN ACTOR: " + 
-		                    mainActor.getName() + 
-		                    mainActor.getType().getDescription() +
-		                    "\n-----------------------------------------------\n" +
-		                    "ASSOCIATIONS");
-		
-		mainActor.getActorAssociatons().forEach(association -> {
-			System.out.print(association.getType().getDescription() + " ( ");
-			
-			association.getActors().forEach(actor -> {
-				System.out.print(actor.getType().getDescription() + " " + actor.getName() + " ");
-			});
-
-			System.out.print(" )");
-			
-			try {
-				if (association.isValid(mainActor)) {
-					System.out.println(" > valid association");
-				} else {
-					System.out.println(" > invalid association");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-		
-		System.out.println("-----------------------------------------------\n" + 
-						   "EXTERNAL RELATIONSHIPS");
-		
-		mainActor.getExternalRelationships().getDependers().forEach(depender -> {
-			System.out.println( depender.getPerspective().getDescription() + " (" + 
-								depender.getActor().getName() + ") " +
-								depender.getActor().getType().getDescription() + " for (" +
-								depender.getType().getDescription() + " " +
-								depender.getName() + ")");
-		});
-		
-		mainActor.getExternalRelationships().getDependees().forEach(dependee -> {
-			System.out.println( dependee.getPerspective().getDescription() + " (" + 
-								dependee.getActor().getName() + ") " +
-								dependee.getActor().getType().getDescription() + " for (" +
-								dependee.getType().getDescription() + " " +
-								dependee.getName() + ")");
-		});
-		
-		XStream xstream = new XStream();
-		String xml = xstream.toXML(mainActor);
-		System.out.println("-----------------------------------------------\n" + 
-						   "TO XML\n" + xml);
-		
-		String errors = xstream.toXML(ErrorHandler.getErrorHandler().getErrors());
-		System.out.println("-----------------------------------------------\n" + 
-				   "ERRORS\n" + errors);
+		ActorStatementFactory actorStatement2 = new ActorStatementFactory();
+		actorStatement2.build(input2);
+		actorStatement2.verifyAssociationErrors();
+		actorStatement2.print();
 	}
 }
