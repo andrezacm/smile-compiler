@@ -91,14 +91,11 @@ public class ActorStatementFactory {
 								dependee.getName() + ")");
 		});
 		
-		XStream xstream = new XStream();
-		String xml = xstream.toXML(mainActor);
-		System.out.println("-----------------------------------------------\n" + 
-					   	   "TO XML\n" + xml);
-		
-		String errors = xstream.toXML(ErrorHandler.getErrorHandler().getErrors());
-		System.out.println("-----------------------------------------------\n" + 
-						   "ERRORS\n" + errors);
+		System.out.println();
+	}
+	
+	public String toXML() {
+		return new XStream().toXML(mainActor);
 	}
 
 	public Actor getMainActor() {
