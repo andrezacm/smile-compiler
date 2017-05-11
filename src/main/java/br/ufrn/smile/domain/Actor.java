@@ -38,6 +38,14 @@ public class Actor {
 	public void setExternalRelationships(ExternalRelationships externalRelationships) {
 		this.externalRelationships = externalRelationships;
 	}
+	
+	@Override
+	public boolean equals(Object actor) {
+		String name = ((Actor)actor).getName();
+		ActorType type = ((Actor)actor).getType();
+		
+		return this.name.equals(name) && this.type.equals(type);
+	}
 
 	public enum ActorType {
 		ACTOR("actor"), 

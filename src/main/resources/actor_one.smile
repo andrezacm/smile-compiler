@@ -5,7 +5,7 @@ actor ActorOne
 
 ExternalRelationships
 	dependsOn ( role ActorTwo ) for ( goal SomeGoal )
+	dependsOn ( role ActorTwo ) for ( softgoal SomeSubgoal )
 	dependsOn ( actor ActorFour ) for ( task SomeTask )
-	
 	reaches ( goal SomeGoal ) to ( role ActorFour )
-	carriesOut ( task SomeTask ) to ( actor ActorFive )
+	carriesOut ( task SomeTask ) to ( agent ActorTwo )

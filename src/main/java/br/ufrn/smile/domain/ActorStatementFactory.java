@@ -2,6 +2,7 @@ package br.ufrn.smile.domain;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -12,6 +13,8 @@ import br.ufrn.smile.SmileLexer;
 import br.ufrn.smile.SmileParser;
 import br.ufrn.smile.listeners.ActorStatementListener;
 import br.ufrn.smile.listeners.ErrorListener;
+import br.ufrn.smile.service.VerifyAssociations;
+import br.ufrn.smile.service.VerifyExternalRelationships;
 
 public class ActorStatementFactory {
 	private Actor mainActor;
@@ -34,15 +37,11 @@ public class ActorStatementFactory {
 	}
 	
 	public void verifyAssociationErrors() {
-		mainActor.getActorAssociatons().forEach(association -> {
-			try {
-				if (!association.isValid(mainActor)) {
-					ErrorHandler.getErrorHandler().addError(new CustomError(mainActor, association));
-				}
-			} catch (Exception e1) {
-				ErrorHandler.getErrorHandler().addError(new CustomError(e1.getMessage()));
-			}
-		});
+		VerifyAssociations.call(mainActor);
+	}
+	
+	public void verifyExternalRelationshipsErrors(HashMap<String, ActorStatementFactory> actorsList) {
+		VerifyExternalRelationships.call(mainActor, actorsList);
 	}
 	
 	public void print() {

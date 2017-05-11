@@ -2,6 +2,7 @@ package br.ufrn.smile.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExternalRelationships {
 	private List<Dependency> dependers;
@@ -22,6 +23,12 @@ public class ExternalRelationships {
 
 	public List<Dependency> getDependees() {
 		return dependees;
+	}
+	
+	public List<Dependency> getDependees(Dependency.DependencyPerspective perspective) {
+		return dependees.stream()
+						.filter(dependency -> dependency.getPerspective().equals(perspective))
+						.collect(Collectors.toList());		
 	}
 
 	public void setDependees(List<Dependency> dependees) {

@@ -3,5 +3,7 @@ agent ActorTwo
 	isPartOf ( agent ActorFour )
 
 ExternalRelationships
-	dependsOn ( role ActorTwo ) for ( goal SomeGoal )
-	dependsOn ( actor ActorFour ) for ( task SomeTask )
+	dependsOn ( role ActorFour ) for ( goal SomeGoal )
+	dependsOn ( actor ActorOne ) for ( task SomeTask )
+	reaches ( goal SomeGoal ) to ( actor ActorOne )
+	reaches ( goal SomeGoal ) to ( actor ActorFour )

@@ -17,6 +17,6 @@ public class Main {
 		
 		compiler.print();
 		
-		System.out.println(compiler.toXML());
+		//System.out.println(compiler.toXML());
 	}
 }

@@ -11,6 +11,7 @@ import com.thoughtworks.xstream.XStream;
 import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
 import br.ufrn.smile.domain.ErrorHandler;
+import br.ufrn.smile.service.VerifyExternalRelationships;
 
 public class SmileCompiler {
 	private HashMap<String, ActorStatementFactory> actors;
@@ -30,7 +31,16 @@ public class SmileCompiler {
 	}
 	
 	public void verifyErrors() {
-		actors.values().forEach(actor -> actor.verifyAssociationErrors());
+		actors.values().forEach(actor -> {
+			actor.verifyAssociationErrors();
+			actor.verifyExternalRelationshipsErrors(this.getActorsCopy(actor));
+		});
+	}
+	
+	private HashMap<String, ActorStatementFactory> getActorsCopy(ActorStatementFactory actor) {
+		HashMap<String, ActorStatementFactory> copy = (HashMap<String, ActorStatementFactory>) actors.clone();
+		copy.remove(actor.getMainActor().getName());
+		return copy;
 	}
 	
 	public void print() {
