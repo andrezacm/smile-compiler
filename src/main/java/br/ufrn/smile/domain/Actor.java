@@ -39,6 +39,18 @@ public class Actor {
 		this.externalRelationships = externalRelationships;
 	}
 	
+	public int getNumberOfAssociations() {
+		return actorAssociatons.size();
+	}
+	
+	public int getNumberOfDependerRelationships() {
+		return externalRelationships.getDependers().size();
+	}
+	
+	public int getNumberOfDependeeRelationships() {
+		return externalRelationships.getDependees().size();
+	}
+	
 	@Override
 	public boolean equals(Object actor) {
 		String name = ((Actor)actor).getName();

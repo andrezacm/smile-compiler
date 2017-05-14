@@ -5,9 +5,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.thoughtworks.xstream.XStream;
 
+import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
 import br.ufrn.smile.domain.ErrorHandler;
@@ -37,10 +39,22 @@ public class SmileCompiler {
 		});
 	}
 	
-	private HashMap<String, ActorStatementFactory> getActorsCopy(ActorStatementFactory actor) {
-		HashMap<String, ActorStatementFactory> copy = (HashMap<String, ActorStatementFactory>) actors.clone();
-		copy.remove(actor.getMainActor().getName());
-		return copy;
+	public int getNumberOfActors() {
+		return actors.size();
+	}
+	
+	public int getNumberOfAssociations() {
+		return actors.values()
+				 	 .stream()
+				 	 .mapToInt(actor -> actor.getMainActor().getNumberOfAssociations())
+				 	 .sum();
+	}
+	
+	public List<Actor> getActors() {
+		return actors.values()
+					 .stream()
+					 .map(actor -> actor.getMainActor())
+					 .collect(Collectors.toList());
 	}
 	
 	public void print() {
@@ -56,5 +70,11 @@ public class SmileCompiler {
 		str.append(xstream.toXML(ErrorHandler.getErrorHandler().getErrors()));
 		
 		return str.toString();
+	}
+	
+	private HashMap<String, ActorStatementFactory> getActorsCopy(ActorStatementFactory actor) {
+		HashMap<String, ActorStatementFactory> copy = (HashMap<String, ActorStatementFactory>) actors.clone();
+		copy.remove(actor.getMainActor().getName());
+		return copy;
 	}
 }
