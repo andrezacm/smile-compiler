@@ -7,12 +7,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.thoughtworks.xstream.XStream;
 
 import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
 import br.ufrn.smile.domain.ErrorHandler;
+import br.ufrn.smile.service.BuildXML;
 import br.ufrn.smile.service.VerifyExternalRelationships;
 
 public class SmileCompiler {
@@ -61,15 +69,8 @@ public class SmileCompiler {
 		actors.values().forEach(actor -> actor.print());
 	}
 	
-	public String toXML() {
-		StringBuilder str = new StringBuilder();
-		
-		actors.values().forEach(actor -> str.append(actor.toXML()));
-		
-		XStream xstream = new XStream();
-		str.append(xstream.toXML(ErrorHandler.getErrorHandler().getErrors()));
-		
-		return str.toString();
+	public void toXML() {
+		BuildXML.call(this.getActors());
 	}
 	
 	private HashMap<String, ActorStatementFactory> getActorsCopy(ActorStatementFactory actor) {

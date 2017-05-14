@@ -15,9 +15,7 @@ public class Main {
 		
 		compiler.verifyErrors();
 		
-		compiler.print();
-		
-		//System.out.println(compiler.toXML());
+		//compiler.print();
 		
 		System.out.println("total of actors " + compiler.getNumberOfActors());
 		
@@ -27,5 +25,9 @@ public class Main {
 					+ " depender: " + actor.getNumberOfDependerRelationships()
 					+ " dependee: " + actor.getNumberOfDependeeRelationships());
 		});
+		
+		System.out.println("----------------------------------------------");
+		
+		compiler.toXML();
 	}
 }

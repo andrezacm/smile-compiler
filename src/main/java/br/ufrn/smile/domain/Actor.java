@@ -3,6 +3,10 @@ package br.ufrn.smile.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 public class Actor {
 	private String name;
 	private ActorType type;
@@ -49,6 +53,14 @@ public class Actor {
 	
 	public int getNumberOfDependeeRelationships() {
 		return externalRelationships.getDependees().size();
+	}
+	
+	public Node toXML(Document doc) {
+		Element actor = doc.createElement("actor");
+		actor.setAttribute("name", name);
+		actor.setAttribute("type", type.getDescription());
+		
+		return actor;
 	}
 	
 	@Override
