@@ -19,8 +19,8 @@ import com.thoughtworks.xstream.XStream;
 import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
-import br.ufrn.smile.domain.ErrorHandler;
 import br.ufrn.smile.service.BuildXML;
+import br.ufrn.smile.service.ErrorHandler;
 import br.ufrn.smile.service.VerifyExternalRelationships;
 
 public class SmileCompiler {

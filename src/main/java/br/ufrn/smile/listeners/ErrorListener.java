@@ -9,7 +9,7 @@ import org.antlr.v4.runtime.Recognizer;
 
 import br.ufrn.smile.SmileParser;
 import br.ufrn.smile.domain.CustomError;
-import br.ufrn.smile.domain.ErrorHandler;
+import br.ufrn.smile.service.ErrorHandler;
 
 public class ErrorListener extends BaseErrorListener {
 	@Override

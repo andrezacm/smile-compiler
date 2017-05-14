@@ -2,7 +2,6 @@ package br.ufrn.smile.service;
 
 import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.CustomError;
-import br.ufrn.smile.domain.ErrorHandler;
 
 public class VerifyAssociations {
 	

@@ -1,7 +1,9 @@
-package br.ufrn.smile.domain;
+package br.ufrn.smile.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.ufrn.smile.domain.CustomError;
 
 public class ErrorHandler {
 	private static final ErrorHandler errorHandler = new ErrorHandler();
