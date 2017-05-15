@@ -1,7 +1,7 @@
 grammar Smile;
 
 actorStatement : actorDeclaration NL
-                 (actorAssociationDeclaration)*
+                 (associationDeclaration)*
                  NL
                  externalRelationships
                  EOF;
@@ -10,7 +10,7 @@ actorDeclaration : actorType actorName (',')? ;
 actorType : ACTOR | AGENT | POSITION | ROLE ;
 actorName : ID ;
 
-actorAssociationDeclaration : associationType '(' (actorDeclaration)+ ')' NL? ;
+associationDeclaration : associationType '(' (actorDeclaration)+ ')' NL? ;
 associationType : COVERS | ISA | INSTANCEOF | ISPARTOF | OCCUPIES | PLAYS ;
 
 externalRelationships : 'ExternalRelationships' NL

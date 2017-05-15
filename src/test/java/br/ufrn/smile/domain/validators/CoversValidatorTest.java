@@ -8,9 +8,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.when;
 
-import java.util.Arrays;
-import java.util.List;
-
 import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.Association;
 
@@ -20,19 +17,15 @@ public class CoversValidatorTest {
 	@Mock Association association;
 	
 	@Test public void isValidTest() {
-		List<Actor> actors = Arrays.asList(new Actor(1, "ActorOne", "role"), new Actor(2, "ActorTwo", "role"));
-		
 		when(actor.getType()).thenReturn(Actor.ActorType.POSITION);
-		when(association.getActors()).thenReturn(actors);
+		when(association.getActor()).thenReturn(new Actor(1, "ActorOne", "role"));
 		
 		assertTrue(new CoversValidator().isValid(actor, association));
 	}
 	
 	@Test public void isNotValidTest() {
-		List<Actor> actors = Arrays.asList(new Actor(1, "ActorOne", "actor"), new Actor(2, "ActorTwo", "role"));
-		
 		when(actor.getType()).thenReturn(Actor.ActorType.POSITION);
-		when(association.getActors()).thenReturn(actors);
+		when(association.getActor()).thenReturn(new Actor(1, "ActorOne", "actor"));
 		
 		assertFalse(new CoversValidator().isValid(actor, association));
 	}

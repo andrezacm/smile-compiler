@@ -3,8 +3,6 @@ package br.ufrn.smile;
 import java.io.IOException;
 import java.io.InputStream;
 
-import br.ufrn.smile.service.IDHandler;
-
 public class Main {
 	public static void main(String[] args) throws IOException {
 		InputStream input = Main.class.getResourceAsStream("/actor_one.smile");
@@ -16,8 +14,6 @@ public class Main {
 		compiler.buildActor(input2);
 		
 		compiler.verifyErrors();
-		
-		//compiler.print();
 		
 		System.out.println("total of actors " + compiler.getNumberOfActors());
 		
@@ -31,5 +27,7 @@ public class Main {
 		System.out.println("----------------------------------------------");
 		
 		compiler.toXML();
+		
+		compiler.print();
 	}
 }

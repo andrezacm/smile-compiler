@@ -14,9 +14,9 @@ public class CustomError {
 					 						  " association: " + association.getType().getDescription() + " (");
 		
 		StringJoiner sj = new StringJoiner(", ");
-		association.getActors().forEach(actor -> { 
-			sj.add(actor.getType().getDescription() + " " + actor.getName());
-		});
+		Actor actor = association.getActor();
+		
+		sj.add(actor.getType().getDescription() + " " + actor.getName());
 		
 		msg.append(sj);
 		msg.append(")");

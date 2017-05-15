@@ -10,6 +10,6 @@ public class PlaysValidator implements AssociationValidator {
             return false;
         }
 
-        return association.getActors().stream().allMatch(actor -> actor.getType() == Actor.ActorType.ROLE);
+        return association.getActor().getType() == Actor.ActorType.ROLE;
     }
 }

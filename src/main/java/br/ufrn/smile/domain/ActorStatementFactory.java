@@ -51,13 +51,12 @@ public class ActorStatementFactory {
 			                "\n-----------------------------------------------\n" +
 			                "ASSOCIATIONS");
 
-		mainActor.getActorAssociatons().forEach(association -> {
+		mainActor.getAssociations().forEach(association -> {
 			System.out.print(association.getType().getDescription() + " ( ");
 			
-			association.getActors().forEach(actor -> {
-				System.out.print(actor.getType().getDescription() + " " + actor.getName() + " ");
-			});
-			
+			Actor actor = association.getActor();
+			System.out.print(actor.getType().getDescription() + " " + actor.getName() + " ");
+
 			System.out.print(" )");
 			
 			try {

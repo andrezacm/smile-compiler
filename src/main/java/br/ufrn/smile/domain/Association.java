@@ -1,15 +1,16 @@
 package br.ufrn.smile.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class Association {
+	private Actor actor;
 	private AssociationType type;
-	private List<Actor> actors;
 	
-	public Association(String associationType) {
+	public Association(String associationType, Actor actor) {
 		this.type = AssociationType.valueOf(associationType.toUpperCase());
-		this.actors = new ArrayList<Actor>();
+		this.actor = actor;
 	}
 
 	public AssociationType getType() {
@@ -19,13 +20,9 @@ public class Association {
 	public void setType(AssociationType type) {
 		this.type = type;
 	}
-
-	public List<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
+	
+	public Actor getActor() {
+		return actor;
 	}
 
 	public Boolean isValid(Actor mainActor) throws ClassNotFoundException, IllegalAccessException, InstantiationException {

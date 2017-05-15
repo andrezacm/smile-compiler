@@ -10,6 +10,6 @@ public class OccupiesValidator implements AssociationValidator {
             return false;
         }
 
-        return association.getActors().stream().allMatch(actor -> actor.getType() == Actor.ActorType.POSITION);
+        return association.getActor().getType() == Actor.ActorType.POSITION;
     }
 }

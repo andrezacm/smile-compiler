@@ -11,14 +11,14 @@ public class Actor {
 	private int id;
 	private String name;
 	private ActorType type;
-	private List<Association> actorAssociatons;
+	private List<Association> associations;
 	private ExternalRelationships externalRelationships;
 	
 	public Actor(int id, String name, String type) {
 		this.id = id;
 		this.name = name;
 		this.type = ActorType.valueOf(type.toUpperCase());
-		this.actorAssociatons = new ArrayList<Association>();
+		this.associations = new ArrayList<Association>();
 	}
 	
 	public int getId() {
@@ -33,12 +33,12 @@ public class Actor {
 		return type;
 	}
 	
-	public List<Association> getActorAssociatons() {
-		return actorAssociatons;
+	public List<Association> getAssociations() {
+		return associations;
 	}
 	
-	public void setActorAssociations(List<Association> actorAssociatons) {
-		this.actorAssociatons = actorAssociatons;
+	public void setAssociations(List<Association> associations) {
+		this.associations = associations;
 	}
 
 	public ExternalRelationships getExternalRelationships() {
@@ -50,7 +50,7 @@ public class Actor {
 	}
 	
 	public int getNumberOfAssociations() {
-		return actorAssociatons.size();
+		return associations.size();
 	}
 	
 	public int getNumberOfDependerRelationships() {

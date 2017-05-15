@@ -10,6 +10,6 @@ public class InstanceOfValidator implements AssociationValidator {
             return false;
         }
 
-        return association.getActors().stream().allMatch(actor -> actor.getType() == Actor.ActorType.AGENT);
+        return association.getActor().getType() == Actor.ActorType.AGENT;
     }
 }

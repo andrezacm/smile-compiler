@@ -6,7 +6,7 @@ import br.ufrn.smile.domain.CustomError;
 public class VerifyAssociations {
 	
 	public static void call(Actor mainActor) {
-		mainActor.getActorAssociatons().forEach(association -> {
+		mainActor.getAssociations().forEach(association -> {
 			try {
 				if (!association.isValid(mainActor)) {
 					ErrorHandler.getErrorHandler().addError(new CustomError(mainActor, association));
