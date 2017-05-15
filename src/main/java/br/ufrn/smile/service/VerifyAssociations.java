@@ -10,14 +10,9 @@ public class VerifyAssociations {
 	
 	public static void call(Actor mainActor, HashMap<String, ActorStatementFactory> actorsList) {
 		mainActor.getAssociations().forEach(association -> {
-			try {	
-				ActorStatementFactory actorSF = actorsList.get(association.getActor().getName());
-				
-				if(actorSF == null) {
-					//add error for missing actor
-					System.out.println("missing actor");
-				}
-				
+			VerifyActorsExistence.call(association.getActor(), actorsList);
+			
+			try {				
 				if (!association.isValid(mainActor)) {
 					ErrorHandler.getErrorHandler().addError(new CustomError(mainActor, association));
 				}

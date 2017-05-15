@@ -13,19 +13,15 @@ public class VerifyExternalRelationships {
 	
 	public static void call(Actor mainActor, HashMap<String, ActorStatementFactory> actorsList) {
 		mainActor.getExternalRelationships().getDependers().forEach(depender -> {
-			ActorStatementFactory actorSF = actorsList.get(depender.getActor().getName());
-			
+			Actor actor = VerifyActorsExistence.call(depender.getActor(), actorsList);
+
 			System.out.println( depender.getPerspective().getDescription() + " (" + 
 					depender.getActor().getName() + ") " +
 					depender.getActor().getType().getDescription() + " for (" +
 					depender.getType().getDescription() + " " +
 					depender.getName() + ")");
 			
-			if(actorSF == null) {
-				//add error for missing actor
-				System.out.println("missing actor");
-			} else {
-				Actor actor = actorSF.getMainActor();
+			if(actor != null) {
 				DependencyPerspective perspective = DependencyFactory.getDependencyPerspective(depender.getType());
 				List<Dependency> matchingDependees = actor.getExternalRelationships().getDependees(perspective);
 				
