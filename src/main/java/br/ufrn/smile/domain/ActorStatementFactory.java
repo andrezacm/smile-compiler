@@ -7,8 +7,6 @@ import java.util.HashMap;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-import com.thoughtworks.xstream.XStream;
-
 import br.ufrn.smile.SmileLexer;
 import br.ufrn.smile.SmileParser;
 import br.ufrn.smile.listeners.ActorStatementListener;
@@ -90,10 +88,6 @@ public class ActorStatementFactory {
 		});
 		
 		System.out.println();
-	}
-	
-	public String toXML() {
-		return new XStream().toXML(mainActor);
 	}
 
 	public Actor getMainActor() {
