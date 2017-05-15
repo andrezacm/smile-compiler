@@ -29,6 +29,14 @@ public class Association {
 		return AssociationFactory.getValidator(type).isValid(mainActor, this);
 	}
 	
+	public Node toXML(Document doc) {
+		Element association = doc.createElement("actorLink");
+		association.setAttribute("type", type.getDescription());
+		association.setAttribute("aref", Integer.toString(actor.getId()));
+		
+		return association;
+	}
+	
 	public enum AssociationType {
 		COVERS("covers"),
 		ISA("isA"),

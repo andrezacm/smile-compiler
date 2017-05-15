@@ -67,6 +67,10 @@ public class Actor {
 		actor.setAttribute("name", name);
 		actor.setAttribute("type", type.getDescription());
 		
+		associations.forEach(association -> {
+			actor.appendChild(association.toXML(doc));
+		});
+		
 		return actor;
 	}
 	
