@@ -7,7 +7,7 @@ import br.ufrn.smile.domain.CustomError;
 
 public class ErrorHandler {
 	private static final ErrorHandler errorHandler = new ErrorHandler();
-	private static List<CustomError> errors = new ArrayList<CustomError>();
+	private List<CustomError> errors = new ArrayList<CustomError>();
 	
 	private ErrorHandler() { }
 	
