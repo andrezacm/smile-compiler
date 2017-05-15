@@ -8,15 +8,21 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class Actor {
+	private int id;
 	private String name;
 	private ActorType type;
 	private List<Association> actorAssociatons;
 	private ExternalRelationships externalRelationships;
 	
-	public Actor(String name, String type) {
+	public Actor(int id, String name, String type) {
+		this.id = id;
 		this.name = name;
 		this.type = ActorType.valueOf(type.toUpperCase());
 		this.actorAssociatons = new ArrayList<Association>();
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getName() {
@@ -57,6 +63,7 @@ public class Actor {
 	
 	public Node toXML(Document doc) {
 		Element actor = doc.createElement("actor");
+		actor.setAttribute("id", Integer.toString(id));
 		actor.setAttribute("name", name);
 		actor.setAttribute("type", type.getDescription());
 		

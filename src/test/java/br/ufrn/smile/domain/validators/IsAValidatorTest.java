@@ -20,7 +20,7 @@ public class IsAValidatorTest {
 	@Mock Association association;
 	
 	@Test public void isValidTest() {
-		List<Actor> actors = Arrays.asList(new Actor("ActorOne", "actor"), new Actor("ActorTwo", "actor"));
+		List<Actor> actors = Arrays.asList(new Actor(1, "ActorOne", "actor"), new Actor(2, "ActorTwo", "actor"));
 		
 		when(actor.getType()).thenReturn(Actor.ActorType.ACTOR);
 		when(association.getActors()).thenReturn(actors);
@@ -29,7 +29,7 @@ public class IsAValidatorTest {
 	}
 	
 	@Test public void isNotValidTest() {
-		List<Actor> actors = Arrays.asList(new Actor("ActorOne", "actor"), new Actor("ActorTwo", "role"));
+		List<Actor> actors = Arrays.asList(new Actor(1, "ActorOne", "actor"), new Actor(2, "ActorTwo", "role"));
 		
 		when(actor.getType()).thenReturn(Actor.ActorType.ACTOR);
 		when(association.getActors()).thenReturn(actors);

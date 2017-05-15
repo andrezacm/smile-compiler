@@ -3,6 +3,8 @@ package br.ufrn.smile;
 import java.io.IOException;
 import java.io.InputStream;
 
+import br.ufrn.smile.service.IDHandler;
+
 public class Main {
 	public static void main(String[] args) throws IOException {
 		InputStream input = Main.class.getResourceAsStream("/actor_one.smile");
