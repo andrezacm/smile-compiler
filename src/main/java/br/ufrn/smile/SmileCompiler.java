@@ -31,8 +31,10 @@ public class SmileCompiler {
 	
 	public void verifyErrors() {
 		actors.values().forEach(actor -> {
-			actor.verifyAssociationErrors();
-			actor.verifyExternalRelationshipsErrors(this.getActorsCopy(actor));
+			HashMap<String, ActorStatementFactory> copy = this.getActorsCopy(actor);
+			
+			actor.verifyAssociationErrors(copy);
+			actor.verifyExternalRelationshipsErrors(copy);
 		});
 	}
 	

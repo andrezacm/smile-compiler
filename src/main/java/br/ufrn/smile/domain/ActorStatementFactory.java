@@ -34,8 +34,8 @@ public class ActorStatementFactory {
 		this.mainActor = actorStatementListener.getMainActor();
 	}
 	
-	public void verifyAssociationErrors() {
-		VerifyAssociations.call(mainActor);
+	public void verifyAssociationErrors(HashMap<String, ActorStatementFactory> actorsList) {
+		VerifyAssociations.call(mainActor, actorsList);
 	}
 	
 	public void verifyExternalRelationshipsErrors(HashMap<String, ActorStatementFactory> actorsList) {

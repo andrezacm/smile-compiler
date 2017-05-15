@@ -1,13 +1,23 @@
 package br.ufrn.smile.service;
 
+import java.util.HashMap;
+
 import br.ufrn.smile.domain.Actor;
+import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
 
 public class VerifyAssociations {
 	
-	public static void call(Actor mainActor) {
+	public static void call(Actor mainActor, HashMap<String, ActorStatementFactory> actorsList) {
 		mainActor.getAssociations().forEach(association -> {
-			try {
+			try {	
+				ActorStatementFactory actorSF = actorsList.get(association.getActor().getName());
+				
+				if(actorSF == null) {
+					//add error for missing actor
+					System.out.println("missing actor");
+				}
+				
 				if (!association.isValid(mainActor)) {
 					ErrorHandler.getErrorHandler().addError(new CustomError(mainActor, association));
 				}
