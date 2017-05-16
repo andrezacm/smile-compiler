@@ -7,7 +7,6 @@ import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
 
 public class VerifyAssociations {
-	
 	public static void call(Actor mainActor, HashMap<String, ActorStatementFactory> actorsList) {
 		mainActor.getAssociations().forEach(association -> {
 			VerifyActorsExistence.call(association.getActor(), actorsList);

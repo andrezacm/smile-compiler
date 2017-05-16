@@ -33,6 +33,8 @@ public class BuildXML {
 			
 			actors.forEach(actor -> root.appendChild(actor.toXML(doc)));
 			
+			BuildExternalRelationshipsXML.call(doc, actors).forEach(node -> root.appendChild(node));
+			
 			//output
 			Transformer transformer = TransformerFactory.newInstance().newTransformer();
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");

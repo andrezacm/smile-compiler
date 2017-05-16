@@ -7,7 +7,6 @@ import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
 
 public class VerifyActorsExistence {
-	
 	public static Actor call(Actor actor, HashMap<String, ActorStatementFactory> actorsList) {
 		ActorStatementFactory actorSF = actorsList.get(actor.getName());
 		
