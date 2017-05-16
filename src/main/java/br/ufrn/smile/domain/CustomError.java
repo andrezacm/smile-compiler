@@ -1,12 +1,17 @@
 package br.ufrn.smile.domain;
 
-import java.util.StringJoiner;
-
 public class CustomError {
 	private Actor actor;
 	private int charPositionInLine;
 	private int line;
 	private String message;
+	
+	public CustomError(Actor actor) {
+		this.actor = actor;
+		this.charPositionInLine = 0;
+		this.line = 0;
+		this.message = "";
+	}
 	
 	public CustomError(Actor actor, int charPositionInLine, int line, String message) {
 		this.actor = actor;
@@ -27,20 +32,13 @@ public class CustomError {
 		this.message = message;
 	}
 	
-	public CustomError(Actor mainActor, Association association) {
-		this.actor = mainActor;
-		this.charPositionInLine = 0;
-		this.line = 0;
-		
-		StringBuilder msg = new StringBuilder("error on " + mainActor.getName() + 
-					 						  " association: " + association.getType().getDescription() + " (");
-		
-		StringJoiner sj = new StringJoiner(", ");
+	public void setAssociationError(Association association) {
+		StringBuilder msg = new StringBuilder("error on " + actor.getName() + 
+				  " association: " + association.getType().getDescription() + " (");
+
 		Actor actor = association.getActor();
 		
-		sj.add(actor.getType().getDescription() + " " + actor.getName());
-		
-		msg.append(sj);
+		msg.append(actor.getType().getDescription() + " " + actor.getName());
 		msg.append(")");
 		
 		this.message = msg.toString();

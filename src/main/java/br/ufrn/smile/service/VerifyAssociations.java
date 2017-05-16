@@ -14,7 +14,10 @@ public class VerifyAssociations {
 			
 			try {				
 				if (!association.isValid(mainActor)) {
-					ErrorHandler.getErrorHandler().addError(new CustomError(mainActor, association));
+					CustomError error = new CustomError(mainActor);
+					error.setAssociationError(association);
+					
+					ErrorHandler.getErrorHandler().addError(error);
 				}
 			} catch (Exception e1) {
 				ErrorHandler.getErrorHandler().addError(new CustomError(e1.getMessage()));
