@@ -1,75 +1,52 @@
 package br.ufrn.smile.domain;
 
 public class CustomError {
-	private Actor actor;
 	private int charPositionInLine;
 	private int line;
+	private String fileName;
 	private String message;
 	
-	public CustomError() {
+	private CustomError(String fileName, String message) {
 		this.charPositionInLine = 0;
 		this.line = 0;
-		this.message = "";
-	}
-	
-	public CustomError(Actor actor) {
-		this.actor = actor;
-		this.charPositionInLine = 0;
-		this.line = 0;
-		this.message = "";
-	}
-	
-	public CustomError(Actor actor, int charPositionInLine, int line, String message) {
-		this.actor = actor;
-		this.charPositionInLine = charPositionInLine;
-		this.line = line;
+		this.fileName = fileName;
 		this.message = message;
 	}
 	
-	public CustomError(int charPositionInLine, int line, String message) {
-		this.charPositionInLine = charPositionInLine;
-		this.line = line;
-		this.message = message;
+	public static CustomError CustomErrorFromFileName(String fileName) {
+		return new CustomError(fileName + ".smile", "");
 	}
 	
-	public CustomError(String message) {
-		this.charPositionInLine = 0;
-		this.line = 0;
-		this.message = message;
+	public static CustomError CustomErrorFromMessage(String message) {
+		return new CustomError("", message);
 	}
 	
 	public void setAssociationError(Association association) {
-		StringBuilder msg = new StringBuilder("error on " + actor.getName() + 
-				  " association: " + association.getType().getDescription() + " (");
-
-		Actor actor = association.getActor();
-		
-		msg.append(actor.getType().getDescription() + " " + actor.getName());
-		msg.append(")");
-		
-		this.message = msg.toString();
+		this.message = "filed association on " + fileName + ": " 
+						+ association.getType().getDescription() + " (" 
+						+ association.getActor().getType().getDescription() + " " 
+						+ association.getActor().getName() + ")";
 	}
 	
 	public void setDependencyError(Dependency dependency) {
-		this.message = dependency.getPerspective().getDescription() + " (" + 
-					   dependency.getActor().getName() + ") " +
-					   dependency.getActor().getType().getDescription() + " for (" +
-					   dependency.getType().getDescription() + " " +
-					   dependency.getName() + ")";
+		this.message = "filed dependency on " + fileName + ": " 
+						+ dependency.getPerspective().getDescription() + " (" 
+						+ dependency.getActor().getName() + ") " 
+						+ dependency.getActor().getType().getDescription() + " for (" 
+						+ dependency.getType().getDescription() + " " 
+						+ dependency.getName() + ")";
 	}
 	
-	public void setMissingActorError() {
-		this.message = "missing actor definition for " + actor.getName() + 
-					   " " + actor.getType();
+	public void setMissingActorError(Actor actor) {
+		this.message = "missing actor definition on " + fileName + ": "
+						+ actor.getType().getDescription() + " " 
+						+ actor.getName();
 	}
 	
-	public void setFileNameError(String actorName, String fileName) {
-		this.message = "the file " + fileName + 
-					   ".smile should have the same name as the actor on it: " + actorName;
-	}
-
-	public Actor getActor() {
-		return actor;
+	public void setFileNameError(String actorName) {
+		this.message = "the file " 
+						+ fileName + " should have the same name as the actor on it: " 
+						+ actorName;
 	}
 	
 	public int getCharPositionInLine() {
@@ -78,6 +55,10 @@ public class CustomError {
 	
 	public int getLine() {
 		return line;
+	}
+	
+	public String getFileName() {
+		return fileName;
 	}
 	
 	public String getMessage() {

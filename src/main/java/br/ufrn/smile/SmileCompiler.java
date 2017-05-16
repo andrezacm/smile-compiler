@@ -42,7 +42,7 @@ public class SmileCompiler {
 			actorStatement.build(input);
 			actors.put(actorStatement.getMainActor().getName(), actorStatement);
 		} catch (IOException e) {
-			ErrorHandler.getErrorHandler().addError(new CustomError(e.getMessage()));
+			ErrorHandler.getErrorHandler().addError(CustomError.CustomErrorFromMessage(e.getMessage()));
 		}
 	}
 	

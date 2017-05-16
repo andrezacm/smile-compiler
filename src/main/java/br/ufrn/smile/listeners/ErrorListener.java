@@ -23,6 +23,6 @@ public class ErrorListener extends BaseErrorListener {
 						 " at " + offendingSymbol + 
 						 ": " + msg;
 		
-		ErrorHandler.getErrorHandler().addError(new CustomError(charPositionInLine, line, message));
+		ErrorHandler.getErrorHandler().addError(CustomError.CustomErrorFromMessage(message));
 	}
 }

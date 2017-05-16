@@ -38,11 +38,11 @@ public class ActorStatementFactory {
 	}
 	
 	public void verifyAssociationErrors(HashMap<String, ActorStatementFactory> actorsList) {
-		VerifyAssociations.call(mainActor, actorsList);
+		VerifyAssociations.call(mainActor, actorsList, fileName);
 	}
 	
 	public void verifyExternalRelationshipsErrors(HashMap<String, ActorStatementFactory> actorsList) {
-		VerifyExternalRelationships.call(mainActor, actorsList);
+		VerifyExternalRelationships.call(mainActor, actorsList, fileName);
 	}
 	
 	public void verifyFileName() {

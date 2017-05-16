@@ -11,9 +11,9 @@ import br.ufrn.smile.domain.Dependency.DependencyPerspective;
 import br.ufrn.smile.domain.DependencyFactory;
 
 public class VerifyExternalRelationships {
-	public static void call(Actor mainActor, HashMap<String, ActorStatementFactory> actorsList) {
+	public static void call(Actor mainActor, HashMap<String, ActorStatementFactory> actorsList, String fileName) {
 		mainActor.getExternalRelationships().getDependers().forEach(depender -> {
-			Actor actor = VerifyActorsExistence.call(depender.getActor(), actorsList);
+			Actor actor = VerifyActorsExistence.call(depender.getActor(), actorsList, fileName);
 			
 			if(actor != null) {
 				DependencyPerspective perspective = DependencyFactory.getDependencyPerspective(depender.getType());
@@ -26,7 +26,7 @@ public class VerifyExternalRelationships {
 				}).findAny().orElse(null);
 				
 				if(foundDependee == null) {
-					CustomError error = new CustomError(mainActor);
+					CustomError error = CustomError.CustomErrorFromFileName(fileName);
 					error.setDependencyError(depender);
 					
 					ErrorHandler.getErrorHandler().addError(error);
