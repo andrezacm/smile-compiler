@@ -1,14 +1,11 @@
 package br.ufrn.smile.domain;
 
 public class CustomError {
-	private int charPositionInLine;
-	private int line;
 	private String fileName;
 	private String message;
+	private Position position;
 	
 	private CustomError(String fileName, String message) {
-		this.charPositionInLine = 0;
-		this.line = 0;
 		this.fileName = fileName;
 		this.message = message;
 	}
@@ -49,19 +46,15 @@ public class CustomError {
 						+ actorName;
 	}
 	
-	public int getCharPositionInLine() {
-		return charPositionInLine;
-	}
-	
-	public int getLine() {
-		return line;
-	}
-	
 	public String getFileName() {
 		return fileName;
 	}
 	
 	public String getMessage() {
 		return message;
+	}
+
+	public Position getPosition() {
+		return position;
 	}
 }
