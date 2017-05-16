@@ -44,6 +44,14 @@ public class CustomError {
 		this.message = msg.toString();
 	}
 	
+	public void setDependencyError(Dependency dependency) {
+		this.message = dependency.getPerspective().getDescription() + " (" + 
+					   dependency.getActor().getName() + ") " +
+					   dependency.getActor().getType().getDescription() + " for (" +
+					   dependency.getType().getDescription() + " " +
+					   dependency.getName() + ")";
+	}
+	
 	public void setMissingActorError() {
 		this.message = "missing actor definition for " + actor.getName() + 
 					   " " + actor.getType();

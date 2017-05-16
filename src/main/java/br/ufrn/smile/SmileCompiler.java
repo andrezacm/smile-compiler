@@ -58,6 +58,13 @@ public class SmileCompiler {
 	
 	public void print() {
 		actors.values().forEach(actor -> actor.print());
+		
+		System.out.println("-----------------------------------------------\n" + 
+	   	   		   "ERRORS");
+
+		ErrorHandler.getErrorHandler().getErrors().forEach(error -> {
+			System.out.println(error.getMessage());
+		});
 	}
 	
 	public void toXML() {

@@ -56,16 +56,6 @@ public class ActorStatementFactory {
 			System.out.print(actor.getType().getDescription() + " " + actor.getName() + " ");
 
 			System.out.print(" )");
-			
-			try {
-				if (association.isValid(mainActor)) {
-					System.out.println(" > valid association");
-				} else {
-					System.out.println(" > invalid association");
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		});
 		
 		System.out.println("-----------------------------------------------\n" + 

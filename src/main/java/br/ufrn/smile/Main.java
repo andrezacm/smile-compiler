@@ -28,6 +28,8 @@ public class Main {
 		
 		compiler.toXML();
 		
-		//compiler.print();
+		System.out.println("----------------------------------------------");
+		
+		compiler.print();
 	}
 }
