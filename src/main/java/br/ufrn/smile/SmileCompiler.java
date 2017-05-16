@@ -50,6 +50,7 @@ public class SmileCompiler {
 		actors.values().forEach(actor -> {
 			HashMap<String, ActorStatementFactory> copy = this.getActorsCopy(actor);
 			
+			actor.verifyFileName();
 			actor.verifyAssociationErrors(copy);
 			actor.verifyExternalRelationshipsErrors(copy);
 		});

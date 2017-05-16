@@ -10,6 +10,7 @@ public class Main {
 		compiler.compile();
 		
 		System.out.println("total of actors " + compiler.getNumberOfActors());
+		System.out.println("total of actors associations " + compiler.getNumberOfAssociations());
 		
 		compiler.getActors().forEach(actor -> {
 			System.out.println(actor.getName()

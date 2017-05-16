@@ -12,9 +12,11 @@ import br.ufrn.smile.listeners.ActorStatementListener;
 import br.ufrn.smile.listeners.ErrorListener;
 import br.ufrn.smile.service.VerifyAssociations;
 import br.ufrn.smile.service.VerifyExternalRelationships;
+import br.ufrn.smile.service.VerifyFileName;
 
 public class ActorStatementFactory {
 	private Actor mainActor;
+	private String fileName;
 	
 	public ActorStatementFactory() { }
 	
@@ -31,6 +33,8 @@ public class ActorStatementFactory {
 		parser.actorStatement().enterRule(actorStatementListener);
 
 		this.mainActor = actorStatementListener.getMainActor();
+		
+		this.fileName = input.substring(input.lastIndexOf("/")+1, input.lastIndexOf(".smile"));
 	}
 	
 	public void verifyAssociationErrors(HashMap<String, ActorStatementFactory> actorsList) {
@@ -39,6 +43,10 @@ public class ActorStatementFactory {
 	
 	public void verifyExternalRelationshipsErrors(HashMap<String, ActorStatementFactory> actorsList) {
 		VerifyExternalRelationships.call(mainActor, actorsList);
+	}
+	
+	public void verifyFileName() {
+		VerifyFileName.call(mainActor.getName(), fileName);
 	}
 	
 	public void print() {

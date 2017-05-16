@@ -6,6 +6,12 @@ public class CustomError {
 	private int line;
 	private String message;
 	
+	public CustomError() {
+		this.charPositionInLine = 0;
+		this.line = 0;
+		this.message = "";
+	}
+	
 	public CustomError(Actor actor) {
 		this.actor = actor;
 		this.charPositionInLine = 0;
@@ -55,6 +61,11 @@ public class CustomError {
 	public void setMissingActorError() {
 		this.message = "missing actor definition for " + actor.getName() + 
 					   " " + actor.getType();
+	}
+	
+	public void setFileNameError(String actorName, String fileName) {
+		this.message = "the file " + fileName + 
+					   ".smile should have the same name as the actor on it: " + actorName;
 	}
 
 	public Actor getActor() {
