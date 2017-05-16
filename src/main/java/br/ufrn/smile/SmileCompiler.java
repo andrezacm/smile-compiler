@@ -89,6 +89,7 @@ public class SmileCompiler {
 		BuildXML.call(this.getActors());
 	}
 	
+	@SuppressWarnings("unchecked")
 	private HashMap<String, ActorStatementFactory> getActorsCopy(ActorStatementFactory actor) {
 		HashMap<String, ActorStatementFactory> copy = (HashMap<String, ActorStatementFactory>) actors.clone();
 		copy.remove(actor.getMainActor().getName());
