@@ -13,6 +13,7 @@ public class Actor {
 	private ActorType type;
 	private List<Association> associations;
 	private ExternalRelationships externalRelationships;
+	private Position position;
 	
 	public Actor(int id, String name, String type) {
 		this.id = id;
@@ -59,6 +60,14 @@ public class Actor {
 	
 	public int getNumberOfDependeeRelationships() {
 		return externalRelationships.getDependees().size();
+	}
+	
+	public Position getPosition() {
+		return position;
+	}
+	
+	public void setPosition(int startCharPosition, int startInLine, int stopCharPosition, int stopInLine) {
+		this.position = new Position(startCharPosition, startInLine, stopCharPosition, stopInLine);
 	}
 	
 	public Node toXML(Document doc) {

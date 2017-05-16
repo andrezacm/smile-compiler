@@ -14,6 +14,11 @@ public class ActorListener extends SmileBaseListener {
 		String actorType = context.actorType().getText();
 		
 		parsedActor = new Actor(id, actorName, actorType);
+		
+		parsedActor.setPosition(context.start.getCharPositionInLine(), 
+								context.start.getLine(), 
+								context.stop.getCharPositionInLine(), 
+								context.stop.getLine());
 	}
 	
 	public Actor getParsedActor() {
