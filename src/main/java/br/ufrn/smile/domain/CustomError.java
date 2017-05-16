@@ -43,6 +43,11 @@ public class CustomError {
 		
 		this.message = msg.toString();
 	}
+	
+	public void setMissingActorError() {
+		this.message = "missing actor definition for " + actor.getName() + 
+					   " " + actor.getType();
+	}
 
 	public Actor getActor() {
 		return actor;
