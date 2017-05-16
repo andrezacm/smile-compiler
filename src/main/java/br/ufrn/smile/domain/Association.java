@@ -7,6 +7,7 @@ import org.w3c.dom.Node;
 public class Association {
 	private Actor actor;
 	private AssociationType type;
+	private Position position;
 	
 	public Association(String associationType, Actor actor) {
 		this.type = AssociationType.valueOf(associationType.toUpperCase());
@@ -23,6 +24,14 @@ public class Association {
 	
 	public Actor getActor() {
 		return actor;
+	}
+	
+	public Position getPosition() {
+		return position;
+	}
+	
+	public void setPosition(int startCharPosition, int startInLine, int stopCharPosition, int stopInLine) {
+		this.position = new Position(startCharPosition, startInLine, stopCharPosition, stopInLine);
 	}
 
 	public Boolean isValid(Actor mainActor) throws ClassNotFoundException, IllegalAccessException, InstantiationException {

@@ -25,8 +25,14 @@ public class AssociationListener extends SmileBaseListener {
 			actorListeners.add(actorListener);
 		});
 		
-		actorListeners.forEach(listener -> { 
-			associations.add(new Association(associationType, listener.getParsedActor()));
+		actorListeners.forEach(listener -> {
+			Association association = new Association(associationType, listener.getParsedActor());
+			association.setPosition(context.start.getCharPositionInLine(), 
+									context.start.getLine(), 
+									context.stop.getCharPositionInLine(), 
+									context.stop.getLine());
+
+			associations.add(association);
 		});
 	}
 	
