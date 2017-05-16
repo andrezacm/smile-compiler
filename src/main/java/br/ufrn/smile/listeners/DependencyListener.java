@@ -19,6 +19,11 @@ public class DependencyListener extends SmileBaseListener {
 		Actor actor = actorListener.getParsedActor();
 
 		dependency = new Dependency(actor, name, type, perspective);
+		
+		dependency.setPosition(context.start.getCharPositionInLine(), 
+							   context.start.getLine(),
+							   context.stop.getCharPositionInLine(),
+							   context.stop.getLine());
 	}
 	
 	@Override 
@@ -32,6 +37,11 @@ public class DependencyListener extends SmileBaseListener {
 		Actor actor = actorListener.getParsedActor();
 
 		dependency = new Dependency(actor, name, type, perspective);
+		
+		dependency.setPosition(context.start.getCharPositionInLine(),
+							   context.start.getLine(),
+							   context.stop.getCharPositionInLine(),
+							   context.stop.getLine());
 	}
 	
 	public Dependency getDependency() {

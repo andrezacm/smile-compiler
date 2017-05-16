@@ -5,6 +5,7 @@ public class Dependency {
 	private String name;
 	private DependencyType type;
 	private DependencyPerspective perspective;
+	private Position position;
 	
 	public Dependency(Actor actor, String name, String type, String perspective) {
 		this.actor = actor;
@@ -43,6 +44,14 @@ public class Dependency {
 
 	public void setPerspective(DependencyPerspective perspective) {
 		this.perspective = perspective;
+	}
+	
+	public Position getPosition() {
+		return position;
+	}
+	
+	public void setPosition(int startCharPosition, int startInLine, int stopCharPosition, int stopInLine) {
+		this.position = new Position(startCharPosition, startInLine, stopCharPosition, stopInLine);
 	}
 
 	public enum DependencyType {
