@@ -1,19 +1,13 @@
 package br.ufrn.smile;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		InputStream input = Main.class.getResourceAsStream("/actor_one.smile");
-		InputStream input2 = Main.class.getResourceAsStream("/actor_two.smile");
 		
-		SmileCompiler compiler = new SmileCompiler();
+		SmileCompiler compiler = new SmileCompiler("path");
 		
-		compiler.buildActor(input);
-		compiler.buildActor(input2);
-		
-		compiler.verifyErrors();
+		compiler.compile();
 		
 		System.out.println("total of actors " + compiler.getNumberOfActors());
 		

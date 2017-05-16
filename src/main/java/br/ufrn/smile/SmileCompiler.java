@@ -1,7 +1,10 @@
 package br.ufrn.smile;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,12 +17,26 @@ import br.ufrn.smile.service.ErrorHandler;
 
 public class SmileCompiler {
 	private HashMap<String, ActorStatementFactory> actors;
+	private List<File> filesInFolder;
 	
-	public SmileCompiler() {
+	public SmileCompiler(String path) throws IOException {
 		this.actors = new HashMap<String, ActorStatementFactory>();
+		
+		this.filesInFolder = Files.walk(Paths.get(path))
+						          .filter(Files::isRegularFile)
+						          .map(Path::toFile)
+						          .collect(Collectors.toList());
 	}
 	
-	public void buildActor(InputStream input) {
+	public void compile() {
+		filesInFolder.forEach(file -> {
+			this.buildActor(file.getAbsolutePath());
+		});
+		
+		this.verifyErrors();
+	}
+	
+	private void buildActor(String input) {
 		try {
 			ActorStatementFactory actorStatement = new ActorStatementFactory();
 			actorStatement.build(input);
@@ -29,7 +46,7 @@ public class SmileCompiler {
 		}
 	}
 	
-	public void verifyErrors() {
+	private void verifyErrors() {
 		actors.values().forEach(actor -> {
 			HashMap<String, ActorStatementFactory> copy = this.getActorsCopy(actor);
 			

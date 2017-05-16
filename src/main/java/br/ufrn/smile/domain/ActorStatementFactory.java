@@ -1,10 +1,9 @@
 package br.ufrn.smile.domain;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.ANTLRFileStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
 import br.ufrn.smile.SmileLexer;
@@ -19,8 +18,8 @@ public class ActorStatementFactory {
 	
 	public ActorStatementFactory() { }
 	
-	public void build(InputStream input) throws IOException {
-		SmileLexer lexer = new SmileLexer(new ANTLRInputStream(input));
+	public void build(String input) throws IOException {
+		SmileLexer lexer = new SmileLexer(new ANTLRFileStream(input));
 		
 		SmileParser parser = new SmileParser(new CommonTokenStream(lexer));
 		
