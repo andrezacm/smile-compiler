@@ -18,7 +18,6 @@ import br.ufrn.smile.service.ErrorHandler;
 
 public class SmileCompiler {
 	private HashMap<String, ActorStatementFactory> actors;
-	private ConfigurationHandler config;
 	private List<File> filesInFolder;
 	
 	public SmileCompiler(String path) throws IOException {
@@ -53,13 +52,14 @@ public class SmileCompiler {
 			HashMap<String, ActorStatementFactory> copy = this.getActorsCopy(actor);
 			
 			actor.verifyFileName();
+			actor.verifyUpperBoundaries();
 			actor.verifyAssociationErrors(copy);
 			actor.verifyExternalRelationshipsErrors(copy);
 		});
 	}
 	
 	public void setConfiguration(int maxNumberOfAssociations, int maxNumberOfDependerRelationships, int maxNumberOfDependeeRelationships) {
-		this.config = new ConfigurationHandler(maxNumberOfAssociations, maxNumberOfDependerRelationships, maxNumberOfDependeeRelationships);
+		ConfigurationHandler.getConfigurationHandler(maxNumberOfAssociations, maxNumberOfDependerRelationships, maxNumberOfDependeeRelationships);
 	}
 	
 	public int getNumberOfActors() {
@@ -84,10 +84,17 @@ public class SmileCompiler {
 		actors.values().forEach(actor -> actor.print());
 		
 		System.out.println("-----------------------------------------------\n" + 
-	   	   		   "ERRORS");
+	   	   		   			"ERRORS");
 
 		ErrorHandler.getErrorHandler().getErrors().forEach(error -> {
 			System.out.println(error.getMessage());
+		});
+		
+		System.out.println("-----------------------------------------------\n" + 
+	   	   		   			"WARNINGS");
+		
+		ErrorHandler.getErrorHandler().getWarnings().forEach(warning -> {
+			System.out.println(warning.getMessage());
 		});
 	}
 	

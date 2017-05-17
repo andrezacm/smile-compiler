@@ -7,3 +7,4 @@ ExternalRelationships
 	dependsOn ( actor ActorOne ) for ( task SomeTask )
 	reaches ( goal SomeGoal ) to ( actor ActorOne )
 	reaches ( goal SomeGoal ) to ( actor ActorFour )
+	reaches ( goal SomeGoal ) to ( actor ActorFive )

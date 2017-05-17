@@ -13,6 +13,7 @@ import br.ufrn.smile.listeners.ErrorListener;
 import br.ufrn.smile.service.VerifyAssociations;
 import br.ufrn.smile.service.VerifyExternalRelationships;
 import br.ufrn.smile.service.VerifyFileName;
+import br.ufrn.smile.service.VerifyActorsUpperBoundaries;
 
 public class ActorStatementFactory {
 	private Actor mainActor;
@@ -47,6 +48,10 @@ public class ActorStatementFactory {
 	
 	public void verifyFileName() {
 		VerifyFileName.call(mainActor.getName(), fileName);
+	}
+	
+	public void verifyUpperBoundaries() {
+		VerifyActorsUpperBoundaries.call(mainActor);
 	}
 	
 	public void print() {
