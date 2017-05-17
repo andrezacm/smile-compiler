@@ -13,10 +13,12 @@ import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
 import br.ufrn.smile.service.BuildXML;
+import br.ufrn.smile.service.ConfigurationHandler;
 import br.ufrn.smile.service.ErrorHandler;
 
 public class SmileCompiler {
 	private HashMap<String, ActorStatementFactory> actors;
+	private ConfigurationHandler config;
 	private List<File> filesInFolder;
 	
 	public SmileCompiler(String path) throws IOException {
@@ -54,6 +56,10 @@ public class SmileCompiler {
 			actor.verifyAssociationErrors(copy);
 			actor.verifyExternalRelationshipsErrors(copy);
 		});
+	}
+	
+	public void setConfiguration(int maxNumberOfAssociations, int maxNumberOfDependerRelationships, int maxNumberOfDependeeRelationships) {
+		this.config = new ConfigurationHandler(maxNumberOfAssociations, maxNumberOfDependerRelationships, maxNumberOfDependeeRelationships);
 	}
 	
 	public int getNumberOfActors() {

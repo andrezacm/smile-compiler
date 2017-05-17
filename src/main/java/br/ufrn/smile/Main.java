@@ -4,8 +4,9 @@ import java.io.IOException;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
-		
 		SmileCompiler compiler = new SmileCompiler("path");
+		
+		compiler.setConfiguration(3, 2, 2);
 		
 		compiler.compile();
 		
