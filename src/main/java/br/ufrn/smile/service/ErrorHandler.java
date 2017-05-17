@@ -7,13 +7,19 @@ import br.ufrn.smile.domain.CustomError;
 import br.ufrn.smile.domain.CustomWarning;
 
 public class ErrorHandler {
-	private static final ErrorHandler errorHandler = new ErrorHandler();
-	private List<CustomError> errors = new ArrayList<CustomError>();
-	private List<CustomWarning> warnings = new ArrayList<CustomWarning>();
+	private static ErrorHandler errorHandler;
+	private List<CustomError> errors;
+	private List<CustomWarning> warnings;
 	
-	private ErrorHandler() { }
+	private ErrorHandler() {
+		this.errors = new ArrayList<CustomError>();
+		this.warnings = new ArrayList<CustomWarning>();
+	}
 	
 	public static ErrorHandler getErrorHandler() {
+		if(errorHandler == null) {
+			errorHandler = new ErrorHandler();
+		}
 		return errorHandler;
 	}
 	
