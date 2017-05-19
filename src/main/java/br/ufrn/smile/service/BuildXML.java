@@ -1,5 +1,6 @@
 package br.ufrn.smile.service;
 
+import java.io.StringWriter;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -19,8 +20,9 @@ import org.w3c.dom.Element;
 import br.ufrn.smile.domain.Actor;
 
 public class BuildXML {
-	public static void call(List<Actor> actors) {
+	public static String call(List<Actor> actors) {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		StringBuilder xml = new StringBuilder();
 		
 		try {
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -40,13 +42,16 @@ public class BuildXML {
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			
 			DOMSource source = new DOMSource(doc);
-			StreamResult console = new StreamResult(System.out);
+			StreamResult result = new StreamResult(new StringWriter());
 			
-			transformer.transform(source, console);			
+			transformer.transform(source, result);		
+			
+			xml.append(result.getWriter().toString());
 			
 		} catch (ParserConfigurationException | TransformerFactoryConfigurationError | TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return xml.toString();
 	}
 }

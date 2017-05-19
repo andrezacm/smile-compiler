@@ -98,8 +98,8 @@ public class SmileCompiler {
 		});
 	}
 	
-	public void toXML() {
-		BuildXML.call(this.getActors());
+	public String toXML() {
+		return BuildXML.call(this.getActors());
 	}
 	
 	@SuppressWarnings("unchecked")
