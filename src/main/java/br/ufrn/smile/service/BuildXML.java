@@ -29,7 +29,7 @@ public class BuildXML {
 			
 			Document doc = docBuilder.newDocument();
 			
-			Element root = doc.createElementNS("", "SMILE");
+			Element root = doc.createElementNS("", "istarml");
 			
 			doc.appendChild(root);
 			
