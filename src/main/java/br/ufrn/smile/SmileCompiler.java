@@ -80,6 +80,10 @@ public class SmileCompiler {
 					 .collect(Collectors.toList());
 	}
 	
+	public List<CustomError> getErrors() {
+		return ErrorHandler.getErrorHandler().getErrors();
+	}
+	
 	public void print() {
 		actors.values().forEach(actor -> actor.print());
 		
