@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import br.ufrn.smile.domain.Actor;
 import br.ufrn.smile.domain.ActorStatementFactory;
 import br.ufrn.smile.domain.CustomError;
+import br.ufrn.smile.domain.CustomWarning;
 import br.ufrn.smile.service.BuildXML;
 import br.ufrn.smile.service.ConfigurationHandler;
 import br.ufrn.smile.service.ErrorHandler;
@@ -82,6 +83,10 @@ public class SmileCompiler {
 	
 	public List<CustomError> getErrors() {
 		return ErrorHandler.getErrorHandler().getErrors();
+	}
+	
+	public List<CustomWarning> getWarnings() {
+		return ErrorHandler.getErrorHandler().getWarnings();
 	}
 	
 	public void print() {
