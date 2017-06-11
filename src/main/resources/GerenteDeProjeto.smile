@@ -1,0 +1,9 @@
+position GerenteDeProjeto
+	covers ( role Monitoramento, role Planejamento )
+
+ExternalRelationships
+	dependsOn ( position Diretor ) for ( softgoal reconhecimento )
+	dependsOn ( position DiretorQA ) for ( softgoal manutenebilidade )
+	reaches ( goal produtoDesenvolvido) to ( position Cliente )
+	reaches ( softgoal entregasRapidas) to ( position Cliente )
+	reaches ( softgoal semExecessoDeGastos) to ( position Diretor )

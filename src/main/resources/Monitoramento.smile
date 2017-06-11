@@ -1,0 +1,5 @@
+role Monitoramento
+
+ExternalRelationships
+	dependsOn ( role Planejamento ) for ( resource planoAtualizado )
+	dependsOn ( role PerfilTecnico ) for ( resource notificacaoDaSituacao )

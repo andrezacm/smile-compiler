@@ -1,0 +1,4 @@
+agent Andreza
+	instanceOf ( agent Desenvolvedor )
+
+ExternalRelationships

@@ -1,0 +1,4 @@
+agent PerfilDiretoria
+	occupies ( position Diretor )
+
+ExternalRelationships

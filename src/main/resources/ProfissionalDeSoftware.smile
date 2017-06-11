@@ -1,0 +1,4 @@
+agent ProfissionalDeSoftware
+	plays ( role PerfilTecnico )
+
+ExternalRelationships

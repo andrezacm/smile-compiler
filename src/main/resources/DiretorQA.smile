@@ -1,0 +1,6 @@
+position DiretorQA
+
+ExternalRelationships
+	reaches ( softgoal altaQualidadeDoSoftware ) to ( position Diretor )
+	reaches ( softgoal manutenebilidade ) to ( position GerenteDeProjeto )
+	reaches ( softgoal progressaoNaCarreira ) to ( agent EspecialistaQA )

@@ -1,0 +1,7 @@
+actor Cliente
+
+ExternalRelationships
+	dependsOn ( position GerenteDeProjeto ) for ( goal produtoDesenvolvido )
+	dependsOn ( position GerenteDeProjeto ) for ( softgoal entregasRapidas )
+	provides ( resource pagamentos ) to ( position Diretor )
+	reaches ( softgoal bomRelacionamento ) to ( position Diretor )

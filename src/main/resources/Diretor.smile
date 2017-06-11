@@ -1,0 +1,6 @@
+position Diretor
+
+ExternalRelationships
+	dependsOn ( position GerenteDeProjeto ) for ( softgoal semExecessoDeGastos )
+	dependsOn ( position DiretorQA ) for ( softgoal altaQualidadeDoSoftware )
+	reaches ( softgoal reconhecimento ) to ( position GerenteDeProjeto)

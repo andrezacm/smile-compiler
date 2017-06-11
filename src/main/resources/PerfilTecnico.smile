@@ -1,0 +1,5 @@
+role PerfilTecnico
+
+ExternalRelationships
+	dependsOn ( role Planejamento ) for ( resource planoDeTarefas )
+	provides ( resource notificacaoDaSituacao ) to ( role Monitoramento )

@@ -1,0 +1,4 @@
+agent Desenvolvedor
+	isA ( agent ProfissionalDeSoftware )
+
+ExternalRelationships

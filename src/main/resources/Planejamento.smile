@@ -1,0 +1,5 @@
+role Planejamento
+
+ExternalRelationships
+	provides ( resource planoAtualizado ) to ( role Monitoramento )
+	provides ( resource planoDeTarefas ) to ( role PerfilTecnico )

@@ -1,0 +1,4 @@
+agent Testador
+	isA ( agent ProfissionalDeSoftware )
+
+ExternalRelationships

@@ -1,0 +1,5 @@
+agent EspecialistaQA
+	isA ( agent ProfissionalDeSoftware )
+
+ExternalRelationships
+	dependsOn ( position DiretorQA ) for ( softgoal progressaoNaCarreira )
