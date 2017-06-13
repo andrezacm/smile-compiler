@@ -74,6 +74,13 @@ public class SmileCompiler {
 				 	 .sum();
 	}
 	
+	public int getNumberOfExternalRelationships() {
+		return actors.values()
+				 	 .stream()
+				 	 .mapToInt(actor -> actor.getMainActor().getNumberOfDependerRelationships())
+				 	 .sum();
+	}
+	
 	public List<Actor> getActors() {
 		return actors.values()
 					 .stream()
